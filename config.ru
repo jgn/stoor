@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+ENV['RACK_ENV'] ||= 'development'
+
+unless ENV['RACK_ENV'] == 'development'
+  log = File.new("log/#{ENV['RACK_ENV']}.log", "a+")
+  $stdout.reopen(log)
+end
+
+domain = ENV['TRAHALD_DOMAIN'] || 'localhost'
+secret = ENV['TRAHALD_SECRET'] || 'trahald'
+gollum_path = ENV['GOLLUM_PATH_IN_USE'] = ENV['GOLLUM_PATH'] || File.expand_path(File.dirname(__FILE__))
+
+require 'rubygems'
+require 'bundler/setup'
+require 'sinatra_auth_github'
+require 'gollum/frontend/app'
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
+require 'trahald'
+
+Precious::App.set(:gollum_path, gollum_path)
+Precious::App.set(:default_markup, :markdown)
+Precious::App.set(:wiki_options, { universal_toc: false })
+
+use Rack::Session::Cookie, domain: domain, key: 'rack.session', secret: secret
+use Trahald::GithubAuth
+use Trahald::GitConfig
+use Trahald::Decorate
+run Precious::App
