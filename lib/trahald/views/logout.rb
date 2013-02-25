@@ -1,4 +1,4 @@
-class Trahald::Auth
+class Trahald::GithubAuth
   module Views
     class Logout < Layout
       def self.template_file
