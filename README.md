@@ -9,7 +9,8 @@ so that we can constrain access by GitHub Organization Team membership.
 
 ## Setup
 
-bundle
+    git clone git@github.com:jgn/trahald.git
+    bundle
 
 ## Usage examples
 
@@ -69,9 +70,13 @@ If the user is not a member of the specified team, they aren't allowed access.
 
 ### Specify the domain (this is to ensure that cookies are set for the correct domain)
 
-    TRAHALD_DOMAIN=wiki.local # default: localhost
+    TRAHALD_DOMAIN=wiki.local    # default: localhost
 
-### Specific the cookie secret
+### Specify the cookie secret
 
-    TRAHALD_SECRET="honi soit qui mal y pense" # default: trahald
+    TRAHALD_SECRET="honi soit qui mal y pense"    # default: trahald
+
+### Specify the cookie timeout
+
+    TRAHALD_EXPIRE_AFTER=600    # In seconds; default: 3600
 

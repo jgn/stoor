@@ -9,6 +9,8 @@ end
 
 domain = ENV['TRAHALD_DOMAIN'] || 'localhost'
 secret = ENV['TRAHALD_SECRET'] || 'trahald'
+expire_after = (ENV['TRAHALD_EXPIRE_AFTER'] || '3600').to_i
+
 wiki_path = ENV['WIKI_PATH_IN_USE'] = ENV['WIKI_PATH'] || File.expand_path(File.dirname(__FILE__))
 
 require 'rubygems'
@@ -23,7 +25,7 @@ Precious::App.set(:gollum_path, wiki_path)
 Precious::App.set(:default_markup, :markdown)
 Precious::App.set(:wiki_options, { universal_toc: false })
 
-use Rack::Session::Cookie, domain: domain, key: 'rack.session', secret: secret
+use Rack::Session::Cookie, domain: domain, key: 'rack.session', secret: secret, expire_after: expire_after
 use Trahald::GithubAuth
 use Trahald::GitConfig
 use Trahald::Decorate
