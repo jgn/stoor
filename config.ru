@@ -9,7 +9,7 @@ end
 
 domain = ENV['TRAHALD_DOMAIN'] || 'localhost'
 secret = ENV['TRAHALD_SECRET'] || 'trahald'
-gollum_path = ENV['GOLLUM_PATH_IN_USE'] = ENV['GOLLUM_PATH'] || File.expand_path(File.dirname(__FILE__))
+wiki_path = ENV['WIKI_PATH_IN_USE'] = ENV['WIKI_PATH'] || File.expand_path(File.dirname(__FILE__))
 
 require 'rubygems'
 require 'bundler/setup'
@@ -19,7 +19,7 @@ require 'gollum/frontend/app'
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
 require 'trahald'
 
-Precious::App.set(:gollum_path, gollum_path)
+Precious::App.set(:gollum_path, wiki_path)
 Precious::App.set(:default_markup, :markdown)
 Precious::App.set(:wiki_options, { universal_toc: false })
 

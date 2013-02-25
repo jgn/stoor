@@ -9,8 +9,7 @@ so that we can constrain access by GitHub Organization Team membership.
 
 ## Setup
 
-    git clone git@github.com:jgn/trahald.git
-    bundle
+bundle
 
 ## Usage examples
 
@@ -26,11 +25,11 @@ the values for the GitHub commit will be what you see in `git config -l`.
 
 ### Specify the Wiki repo location
 
-    GOLLUM_PATH=/Users/admin/wiki bundle exec rackup
+    WIKI_PATH=/Users/admin/wiki bundle exec rackup
 
-The `GOLLUM_PATH` environment variable provides for locating the wiki contents in a differet repo from the
-Trahald application. It is strongly advised that you do this so that your wiki repo is separate from the
-repo managing Gollum.
+The `WIKI_PATH` environment variable provides for locating the wiki contents in a differet repo from the
+Trahald application. It is strongly advised that you do this so that you can keep your wiki code and wiki
+content separate.
 
 ### GitHub authorization
 
@@ -72,7 +71,7 @@ If the user is not a member of the specified team, they aren't allowed access.
 
     TRAHALD_DOMAIN=wiki.local # default: localhost
 
-### Specify the cookie secret
+### Specific the cookie secret
 
     TRAHALD_SECRET="honi soit qui mal y pense" # default: trahald
 
