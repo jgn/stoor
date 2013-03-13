@@ -1,4 +1,4 @@
-module Trahald
+module Stoor
   class Decorate
     include Rack::Utils
 
