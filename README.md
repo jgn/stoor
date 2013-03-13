@@ -89,8 +89,8 @@ I create an extra name for 127.0.0.1 in `/etc/hosts` such as `wiki.local`. Then:
 
     cd $HOME/Dropbox
     git clone git@github.com:jgn/stoor.git
-    mkdir ../wiki
-    git init ../wiki
+    mkdir wiki
+    git init wiki
     cd stoor
     # Make sure I'm using the system Ruby
     rbenv shell system
@@ -126,5 +126,6 @@ Then in `/etc/apache2/httpd.conf`:
 and finally:
 
     sudo apachectl restart
-    open http://wiki.local
+
+Now browse your wiki at <http://wiki.local>
 
