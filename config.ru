@@ -23,9 +23,9 @@ require 'trahald'
 
 Precious::App.set(:gollum_path, wiki_path)
 Precious::App.set(:default_markup, :markdown)
-Precious::App.set(:wiki_options, { universal_toc: false })
+Precious::App.set(:wiki_options, { :universal_toc =>false })
 
-use Rack::Session::Cookie, domain: domain, key: 'rack.session', secret: secret, expire_after: expire_after
+use Rack::Session::Cookie, :domain => domain, :key => 'rack.session', :secret => secret, :expire_after => expire_after
 use Trahald::GithubAuth
 use Trahald::GitConfig
 use Trahald::Decorate
