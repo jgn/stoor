@@ -35,7 +35,7 @@ module Trahald
         email = emails.find { |e| e =~ /#{ENV['GITHUB_EMAIL_DOMAIN']}/ }
       end
       email ||= emails.first
-      session['gollum.author'] = { name: github_user.name, email: email }
+      session['gollum.author'] = { :name => github_user.name, :email => email }
       pass
     end
   end
