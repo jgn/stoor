@@ -80,3 +80,52 @@ If the user is not a member of the specified team, they aren't allowed access.
 
     STOOR_EXPIRE_AFTER=600    # In seconds; default: 3600
 
+## How I run it
+
+I like having my own personal wiki. Since Apache is ubiquitous on Macs, I run the Wiki with configuration in `/etc/apache2/httpd.conf`,
+and just use my system Ruby.
+
+I create an extra name for 127.0.0.1 in `/etc/hosts` such as `wiki.local`. Then:
+
+    cd $HOME/Dropbox
+    git clone git@github.com:jgn/stoor.git
+    mkdir wiki
+    git init wiki
+    cd stoor
+    # Make sure I'm using the system Ruby
+    rbenv shell system
+    bundle
+    sudo bash
+      rbenv shell system
+      gem install passenger
+      passenger-install-apache2-module
+
+Then in `/etc/apache2/httpd.conf`:
+
+    LoadModule passenger_module /Library/Ruby/Gems/1.8/gems/passenger-3.0.19/ext/apache2/mod_passenger.so
+    PassengerRoot /Library/Ruby/Gems/1.8/gems/passenger-3.0.19
+    PassengerRuby /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+
+    NameVirtualHost *:80
+
+    <VirtualHost *:80>
+      SetEnv GITHUB_CLIENT_ID 780ec06a331b4f61a345
+      SetEnv GITHUB_CLIENT_SECRET f1e5439aff166c34f707747120acbf66ef233fc2
+      SetEnv GITHUB_EMAIL_DOMAIN 7fff.com
+      SetEnv STOOR_DOMAIN wiki.local
+      SetEnv STOOR_EXPIRE_AFTER 60
+      SetEnv WIKI_PATH /Users/jgn/Dropbox/wiki
+      ServerName wiki.local
+      DocumentRoot "/Users/jgn/Dropbox/stoor/public"
+      <Directory "/Users/jgn/Dropbox/stoor/public">
+        Allow from all
+        Options -MultiViews
+      </Directory>
+    </VirtualHost>
+
+and finally:
+
+    sudo apachectl restart
+
+Now browse your wiki at <http://wiki.local>
+
