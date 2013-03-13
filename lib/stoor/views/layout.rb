@@ -1,4 +1,4 @@
-class Trahald::GithubAuth
+class Stoor::GithubAuth
   module Views
     class Layout < Precious::Views::Layout
       def self.template_file
