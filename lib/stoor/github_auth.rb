@@ -1,4 +1,4 @@
-module Trahald
+module Stoor
   class GithubAuth < Sinatra::Base
 
     set :github_options, {

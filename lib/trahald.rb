@@ -1,5 +1,0 @@
-require 'trahald/github_auth'
-require 'trahald/git_config'
-require 'trahald/decorate'
-require 'trahald/views/layout'
-require 'trahald/views/logout'

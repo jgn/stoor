@@ -1,4 +1,4 @@
-module Trahald
+module Stoor
   class GitConfig
     def initialize(app); @app = app; end
 

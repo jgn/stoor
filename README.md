@@ -9,7 +9,7 @@ so that we can constrain access by GitHub Organization Team membership.
 
 ## Setup
 
-    git clone git@github.com:jgn/trahald.git
+    git clone git@github.com:jgn/stoor.git
     bundle
 
 ## Usage examples
@@ -29,7 +29,7 @@ the values for the GitHub commit will be what you see in `git config -l`.
     WIKI_PATH=/Users/admin/wiki bundle exec rackup
 
 The `WIKI_PATH` environment variable provides for locating the wiki contents in a differet repo from the
-Trahald application. It is strongly advised that you do this so that you can keep your wiki code and wiki
+Stoor application. It is strongly advised that you do this so that you can keep your wiki code and wiki
 content separate.
 
 ### GitHub authorization
@@ -40,7 +40,7 @@ Require authorization via GitHub to the GitHub application with the given client
 
 Access to the wiki will first run through GitHub OAuth against the app specified by the id and secret. For information
 on setting up an application in GitHub and obtaining its id and secret, see <https://github.com/settings/applications/new>.
-If you are running Trahald on localhost with Rackup, the typical settings would be:
+If you are running Stoor on localhost with Rackup, the typical settings would be:
 
 <table>
   <tr>
@@ -53,7 +53,7 @@ If you are running Trahald on localhost with Rackup, the typical settings would 
 
 **NOTE:** No matter what your domain and port, the callback path must be `/auth/github/callback`.
 
-**NOTE:** See also `TRAHALD_DOMAIN` below: The domain specified for the cookie should match the domain in your GitHub
+**NOTE:** See also `STOOR_DOMAIN` below: The domain specified for the cookie should match the domain in your GitHub
 application settings.
 
 ### Prefer a certain email domain
@@ -70,13 +70,13 @@ If the user is not a member of the specified team, they aren't allowed access.
 
 ### Specify the domain (this is to ensure that cookies are set for the correct domain)
 
-    TRAHALD_DOMAIN=wiki.local    # default: localhost
+    STOOR_DOMAIN=wiki.local    # default: localhost
 
 ### Specify the cookie secret
 
-    TRAHALD_SECRET="honi soit qui mal y pense"    # default: trahald
+    STOOR_SECRET="honi soit qui mal y pense"    # default: stoor
 
 ### Specify the cookie timeout
 
-    TRAHALD_EXPIRE_AFTER=600    # In seconds; default: 3600
+    STOOR_EXPIRE_AFTER=600    # In seconds; default: 3600
 
