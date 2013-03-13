@@ -8,7 +8,7 @@ module Trahald
         if ENV['GOLLUM_PATH_IN_USE']
           if name = git_option_value('user.name')
             if email = git_option_value('user.email')
-              @request.session['gollum.author'] = { name: name, email: email }
+              @request.session['gollum.author'] = { :name => name, :email => email }
             end
           end
         end
