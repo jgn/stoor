@@ -1,6 +1,4 @@
-if RUBY_VERSION == '1.8.7'
-  require 'ruby18_source_location'
-end
+require 'ruby18_source_location' if RUBY_VERSION == '1.8.7'
 
 class Stoor::GithubAuth
   module Views
