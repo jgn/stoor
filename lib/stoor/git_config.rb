@@ -5,7 +5,7 @@ module Stoor
     def call(env)
       @request = Rack::Request.new(env)
       unless @request.session['gollum.author']
-        if ENV['GOLLUM_PATH_IN_USE']
+        if ENV['WIKI_PATH_IN_USE']
           if name = git_option_value('user.name')
             if email = git_option_value('user.email')
               @request.session['gollum.author'] = { :name => name, :email => email }
@@ -17,7 +17,7 @@ module Stoor
     end
 
     def git_option_value(option)
-      `cd #{ENV['GOLLUM_PATH_IN_USE']} && git config --get #{option}`.strip
+      `cd #{ENV['WIKI_PATH_IN_USE']} && git config --get #{option}`.strip
     rescue
     end
   end
