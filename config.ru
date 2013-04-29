@@ -16,7 +16,7 @@ wiki_path = ENV['WIKI_PATH_IN_USE'] = ENV['WIKI_PATH'] || File.expand_path(File.
 require 'rubygems'
 require 'bundler/setup'
 require 'sinatra_auth_github'
-require 'gollum/frontend/app'
+require 'gollum/app'
 
 $LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
 require 'stoor'
