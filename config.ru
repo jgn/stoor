@@ -23,7 +23,7 @@ module Rack
 end
 
 ENV['RACK_ENV'] ||= 'development'
-log_frag = "/Users/jgn/src/iora_hipaa_stoor/log/#{ENV['RACK_ENV']}"
+log_frag = "#{File.dirname(__FILE__)}/log/#{ENV['RACK_ENV']}"
 access_logger = Logger.new("#{log_frag}_access.log")
 access_logger.instance_eval do
   def write(msg); self.send(:<<, msg); end
