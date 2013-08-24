@@ -45,6 +45,7 @@ use Rack::Session::Cookie, :domain => domain, :key => 'rack.session', :secret =>
 use Stoor::GithubAuth
 use Stoor::GitConfig
 use Stoor::Decorate
+use Stoor::FixCssWidth if ENV['STOOR_WIDE']
 
 Precious::App.set(:gollum_path, wiki_path)
 Precious::App.set(:default_markup, :markdown)
