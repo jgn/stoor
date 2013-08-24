@@ -80,6 +80,10 @@ If the user is not a member of the specified team, they aren't allowed access.
 
     STOOR_EXPIRE_AFTER=600    # In seconds; default: 3600
 
+### Wide display
+
+    STOOR_WIDE=y              # Main wiki content will take 90% of browser width
+
 ## How I run it
 
 I like having my own personal wiki. Since Apache is ubiquitous on Macs, I run the Wiki with configuration in `/etc/apache2/httpd.conf`,
