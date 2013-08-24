@@ -10,7 +10,7 @@ module Stoor
       @request = Rack::Request.new(env)
 
       if @request.session['gollum.author'].nil?
-        puts "No 'gollum.author' in session - skipping page decoration."
+        @request.logger.info "No 'gollum.author' in session - skipping page decoration."
         return @app.call(env)
       end
 
