@@ -7,6 +7,13 @@ a local machine (behind a firewall), and put the wiki contents into a directory 
 data, because they will sign a HIPAA BAA.) Meanwhile, we'd like to authorize access by some means, so we use GitHub Oauth,
 so that we can constrain access by GitHub Organization Team membership.
 
+## Requirements
+
+Ruby 1.9.2 or greater.
+
+Unfortunately, this will no longer work on Ruby 1.8.7, because `gollum-lib` now wants Nokogiri 1.6.0 ([see?](https://github.com/gollum/gollum-lib/commit/eeb0a4a036001c7621d173e7152b91ed02b21ed0#commitcomment-4170065)), and
+1.8.7 isn't supported. That's too bad, because it was nice that this would work on the system Ruby on a Mac.
+
 ## Setup
 
     git clone git@github.com:jgn/stoor.git
@@ -87,7 +94,7 @@ If the user is not a member of the specified team, they aren't allowed access.
 ## How I run it
 
 I like having my own personal wiki. Since Apache is ubiquitous on Macs, I run the Wiki with configuration in `/etc/apache2/httpd.conf`,
-and just use my system Ruby.
+~~~and just use my system Ruby~~~ some Ruby provided by rbenv, and Passenger.
 
 I create an extra name for 127.0.0.1 in `/etc/hosts` such as `wiki.local`. Then:
 
@@ -106,9 +113,9 @@ I create an extra name for 127.0.0.1 in `/etc/hosts` such as `wiki.local`. Then:
 
 Then in `/etc/apache2/httpd.conf`:
 
-    LoadModule passenger_module /Library/Ruby/Gems/1.8/gems/passenger-3.0.19/ext/apache2/mod_passenger.so
-    PassengerRoot /Library/Ruby/Gems/1.8/gems/passenger-3.0.19
-    PassengerRuby /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+    LoadModule passenger_module /opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/passenger-4.0.19/buildout/apache2/mod_passenger.so
+    PassengerRoot /opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/passenger-4.0.19
+    PassengerDefaultRuby /opt/boxen/rbenv/versions/1.9.2-p320/bin/ruby    LoadModule passenger_module /Library/Ruby/Gems/1.8/gems/passenger-3.0.19/ext/apache2/mod_passenger.so
 
     NameVirtualHost *:80
 

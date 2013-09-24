@@ -1,5 +1,3 @@
-require 'ruby18_source_location' if RUBY_VERSION == '1.8.7'
-
 class Stoor::GithubAuth
   module Views
     class Layout < Precious::Views::Layout
