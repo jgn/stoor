@@ -2,6 +2,8 @@ module Stoor
   class FixCssWidth
     include Rack::Utils
 
+    ADDITIONAL_STYLES = '<style type="text/css">#wiki-wrapper { width: 90%; } .markdown-body table { width: 100%; }</style>'
+
     def initialize(app); @app = app; end
 
     def call(env)
@@ -20,7 +22,7 @@ module Stoor
           content = response.inject("") { |content, part| content << part }
           if content =~ /<body>/
             pre, match, post = $`, $&, $'
-            new_body = pre + match + '<style type="text/css">#wiki-wrapper { width: 90%; }</style>' + post
+            new_body = pre + match + ADDITIONAL_STYLES + post
             headers['Content-Length'] = new_body.bytesize.to_s
             return [status, headers, [new_body]]
           end
