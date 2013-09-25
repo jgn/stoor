@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
-puts "foo"
+require 'thin'
+ARGV.unshift 'config.ru'
+ARGV.unshift '-R'
+ARGV.unshift 'start'
+Thin::Runner.new(ARGV).run!
