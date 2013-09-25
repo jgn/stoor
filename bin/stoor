@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 
 require 'thin'
-ARGV.unshift 'config.ru'
+
+config_ru = File.expand_path(File.join(File.dirname(__FILE__), '..', 'config.ru'))
+
+ENV['WIKI_PATH'] ||= '.'
+
+ARGV.unshift config_ru
 ARGV.unshift '-R'
 ARGV.unshift 'start'
 Thin::Runner.new(ARGV).run!
