@@ -18,14 +18,17 @@ Unfortunately, this will no longer work on Ruby 1.8.7, because `gollum-lib` now 
 
     gem install stoor
 
+(On occasion I have had to `rbenv rehash`.)
+
 ## Usage examples
 
 (Relax, the client id and secret below are fake.)
 
 ### The 'stoor' command
 
-To get started, type:
+To get started, change directory to your git repo where your wiki content lives, and type the `stoor` command:
 
+    cd wiki
     stoor
 
 This will run your gollum wiki on port 3000, though it will decorate the footer with a message saying who
@@ -33,6 +36,16 @@ the committer is. When not authenticating against GitHub, the default options fo
 the values for the GitHub commit will be what you see in `git config -l`).
 
 The `stoor` command is a thin wrapper around the `thin` web server, and takes all `thin` options (`-p <port>`, etc.).
+
+If you get the error `Gollum::InvalidGitRepositoryError` it means that you didn't change your directory to
+a git repo.
+
+If you don't have a repo yet for your wiki . . .
+
+    mkdir mywiki
+    cd mywiki
+    git init .
+    stoor
 
 ### Specify the Wiki repo location
 
