@@ -128,8 +128,8 @@ Then in `/etc/apache2/httpd.conf`:
       SetEnv STOOR_EXPIRE_AFTER 60
       SetEnv WIKI_PATH /Users/jgn/Dropbox/wiki
       ServerName wiki.local
-      DocumentRoot "/opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/stoor-0.0.1/public"
-      <Directory "/opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/stoor-0.0.1/public">
+      DocumentRoot "/opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/stoor-0.1.4/public"
+      <Directory "/opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/stoor-0.1.4/public">
         Allow from all
         Options -MultiViews
       </Directory>

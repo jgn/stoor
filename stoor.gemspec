@@ -19,4 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sinatra_auth_github', '~> 1.0.0'
   s.add_dependency 'json',                '~> 1.8.0'
   s.executables << 'stoor'
+
+  s.add_development_dependency 'rack-test'
+  s.add_development_dependency 'rspec'
 end
