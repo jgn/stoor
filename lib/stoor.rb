@@ -2,7 +2,7 @@ require 'stoor/logger'
 require 'stoor/github_auth'
 require 'stoor/git_config'
 require 'stoor/decorate'
-require 'stoor/fix_css_width'
+require 'stoor/add_after'
 require 'stoor/views/layout'
 require 'stoor/views/logout'
 
