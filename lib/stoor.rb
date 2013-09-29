@@ -1,8 +1,7 @@
 require 'stoor/logger'
 require 'stoor/github_auth'
 require 'stoor/git_config'
-require 'stoor/decorate'
-require 'stoor/add_after'
+require 'stoor/transform_content'
 require 'stoor/views/layout'
 require 'stoor/views/logout'
 

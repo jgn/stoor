@@ -11,7 +11,9 @@ so that we can constrain access by GitHub Organization Team membership.
 
 Ruby 1.9.2 or greater.
 
-Unfortunately, this will no longer work on Ruby 1.8.7, because `gollum-lib` now wants Nokogiri 1.6.0 ([see?](https://github.com/gollum/gollum-lib/commit/eeb0a4a036001c7621d173e7152b91ed02b21ed0#commitcomment-4170065)), and
+An operating system other than Windows (because Gollum doesn't work on Windows, because grit doesn't work on Windows . . .).
+
+Unfortunately, Stoor will no longer work on Ruby 1.8.7, because `gollum-lib` now wants Nokogiri 1.6.0 ([see?](https://github.com/gollum/gollum-lib/commit/eeb0a4a036001c7621d173e7152b91ed02b21ed0#commitcomment-4170065)), and
 1.8.7 isn't supported. That's too bad, because it was nice that this would work on the system Ruby on a Mac.
 
 ## Setup
@@ -49,9 +51,9 @@ If you don't have a repo yet for your wiki . . .
 
 ### Specify the Wiki repo location
 
-    WIKI_PATH=/Users/admin/wiki stoor
+    STOOR_WIKI_PATH=/Users/admin/wiki stoor
 
-The `WIKI_PATH` environment variable provides for locating the wiki contents in a differet repo from the
+The `STOOR_WIKI_PATH` environment variable provides for locating the wiki contents in a differet repo from the
 Stoor application. It is strongly advised that you do this so that you can keep your wiki code and wiki
 content separate.
 
@@ -126,7 +128,7 @@ Then in `/etc/apache2/httpd.conf`:
       SetEnv GITHUB_EMAIL_DOMAIN 7fff.com
       SetEnv STOOR_DOMAIN wiki.local
       SetEnv STOOR_EXPIRE_AFTER 60
-      SetEnv WIKI_PATH /Users/jgn/Dropbox/wiki
+      SetEnv STOOR_WIKI_PATH /Users/jgn/Dropbox/wiki
       ServerName wiki.local
       DocumentRoot "/opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/stoor-0.1.4/public"
       <Directory "/opt/boxen/rbenv/versions/1.9.2-p320/lib/ruby/gems/1.9.1/gems/stoor-0.1.4/public">
