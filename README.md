@@ -61,7 +61,7 @@ content separate.
 
 Require authorization via GitHub to the GitHub application with the given client id and secret
 
-    GITHUB_CLIENT_ID=780ec06a331b4f61a345 GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
+    STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
 
 Access to the wiki will first run through GitHub OAuth against the app specified by the id and secret. For information
 on setting up an application in GitHub and obtaining its id and secret, see <https://github.com/settings/applications/new>.
@@ -80,11 +80,11 @@ application settings.
 
 If there is more than one email associated with the GitHub user, prefer the one from the specified domain (otherwise the first email will be used)
 
-    GITHUB_EMAIL_DOMAIN=7fff.com GITHUB_CLIENT_ID=780ec06a331b4f61a345 GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
+    STOOR_GITHUB_EMAIL_DOMAIN=7fff.com STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
 
 ### Require GitHub team
 
-    GITHUB_TEAM_ID=11155 GITHUB_CLIENT_ID=780ec06a331b4f61a345 GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
+    STOOR_GITHUB_TEAM_ID=11155 STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
 
 If the user is not a member of the specified team, they aren't allowed access.
 
@@ -123,9 +123,9 @@ Then in `/etc/apache2/httpd.conf`:
     NameVirtualHost *:80
 
     <VirtualHost *:80>
-      SetEnv GITHUB_CLIENT_ID 780ec06a331b4f61a345
-      SetEnv GITHUB_CLIENT_SECRET f1e5439aff166c34f707747120acbf66ef233fc2
-      SetEnv GITHUB_EMAIL_DOMAIN 7fff.com
+      SetEnv STOOR_GITHUB_CLIENT_ID 780ec06a331b4f61a345
+      SetEnv STOOR_GITHUB_CLIENT_SECRET f1e5439aff166c34f707747120acbf66ef233fc2
+      SetEnv STOOR_GITHUB_EMAIL_DOMAIN 7fff.com
       SetEnv STOOR_DOMAIN wiki.local
       SetEnv STOOR_EXPIRE_AFTER 60
       SetEnv STOOR_WIKI_PATH /Users/jgn/Dropbox/wiki

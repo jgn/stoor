@@ -68,7 +68,7 @@ if repo_exists
         </div>
         <div style="float: right;">
           <p style="text-align: right; font-size: .9em; line-height: 1.6em; color: #999; margin: 0.9em 0;">
-            Commiting as <b>#{request.session['gollum.author'][:name]}</b> (#{request.session['gollum.author'][:email]})#{" | <a href='/logout'>Logout</a>" if ENV['GITHUB_AUTHORIZED']}
+            Commiting as <b>#{request.session['gollum.author'][:name]}</b> (#{request.session['gollum.author'][:email]})#{" | <a href='/logout'>Logout</a>" if request.session['stoor.github.authorized']}
           </p>
         </div>
       HTML

@@ -20,6 +20,8 @@ module Stoor
       @app.call(env)
     end
 
+    private
+
     def git_option_value(option)
       @repo ||= Grit::Repo.new(repo_path)
       @repo.config[option]
