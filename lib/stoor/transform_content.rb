@@ -22,7 +22,7 @@ module Stoor
 
       if pass_condition.call(request)
         if request.logger
-          request.logger.info "Skipping - #{pass_condition.call(request)}"
+          request.logger.info "Skipping -- because pass condition met"
         end
       else
         @headers = HeaderHash.new(@headers)
