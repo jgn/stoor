@@ -1,10 +1,10 @@
-This is an example of fronting Gollum with a small Sinatra app that authorizes against GitHub.
+Stoor provides a Gollum (wiki) server with a few other bells and whistles, such as authentication against GitHub OAuth.
 
 ## Rationale
 
 In our environment, the contents of our wiki are confidential and should not be pushed up to GitHub. We keep the wiki on
 a local machine (behind a firewall), and put the wiki contents into a directory that is sync'd to box.com. (box.com is useful for confidential
-data, because they will sign a HIPAA BAA.) Meanwhile, we'd like to authorize access by some means, so we use GitHub Oauth,
+data, because they will sign a HIPAA BAA.) Meanwhile, we'd like to authorize access by some means: we like GitHub Oauth,
 so that we can constrain access by GitHub Organization Team membership.
 
 ## Requirements
@@ -62,11 +62,16 @@ Require authorization via GitHub to the GitHub application with the given client
 
 Access to the wiki will first run through GitHub OAuth against the app specified by the id and secret. For information
 on setting up an application in GitHub and obtaining its id and secret, see <https://github.com/settings/applications/new>.
-If you are running Stoor on localhost with Rackup, the typical settings would be:
+If you are running Stoor on localhost with the `stoor` command, the typical settings would be:
 
-Application Name | Main URL | Callback URL
----              | ---      |
-YourAppName      | http://localhost:3000 | http://localhost:3000/auth/github/callback
+<table>
+  <tr>
+    <th> Application Name </th> <th> Main URL </th> <th> Callback URL </th>
+  </tr>
+  <tr>
+    <td> YourAppName </td> <td> http://localhost:3000 </td><td> http://localhost:3000/auth/github/callback </td>
+  </tr>
+</table>
 
 **NOTE:** No matter what your domain and port, the callback path must be `/auth/github/callback`.
 
@@ -104,7 +109,7 @@ If the user is not a member of the specified team, they aren't allowed access.
 ## How I run it
 
 I like having my own personal wiki. Since Apache is ubiquitous on Macs, I run the Wiki with configuration in `/etc/apache2/httpd.conf`,
-~~~and just use my system Ruby~~~ some Ruby provided by rbenv, and Passenger.
+and some Ruby provided by rbenv, and Passenger.
 
 I create an extra name for 127.0.0.1 in `/etc/hosts` such as `wiki.local`. Then:
 
