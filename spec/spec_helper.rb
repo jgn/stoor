@@ -1,5 +1,12 @@
 require 'rack/test'
 require 'ostruct'
+require 'grit'
+require 'sinatra'
+require 'mustache'
+require 'sinatra/auth/github'
+require 'gollum/app'
+require 'stoor'
+require 'repo'
 
 RSpec.configure do |conf|
   conf.include Rack::Test::Methods
@@ -13,9 +20,8 @@ class String
 end
 
 require 'warden/github'
-require 'warden/test/helpers'
 require 'warden/github/user'
-
+require 'warden/test/helpers'
 # Follows https://github.com/atmos/sinatra_auth_github/blob/master/lib/sinatra/auth/github/test/test_helper.rb
 module Stoor
   module Test

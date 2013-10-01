@@ -1,7 +1,4 @@
-require 'stoor/git_config'
 require 'spec_helper'
-require 'grit'
-require 'repo'
 
 module Stoor
   describe GitConfig do
