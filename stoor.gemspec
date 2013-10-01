@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'grit',                '~> 2.5.0'
   s.executables << 'stoor'
 
+  s.add_development_dependency 'warden-github'
   s.add_development_dependency 'rack-test'
   s.add_development_dependency 'rspec'
 end

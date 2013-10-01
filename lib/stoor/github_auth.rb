@@ -2,7 +2,7 @@ module Stoor
   class GithubAuth < Sinatra::Base
 
     set :github_options, {
-      :scopes    => "user,user:email",
+      :scopes    => "user:email",
       :client_id => ENV['STOOR_GITHUB_CLIENT_ID'],
       :secret    => ENV['STOOR_GITHUB_CLIENT_SECRET']
     }
