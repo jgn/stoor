@@ -1,13 +1,4 @@
 require 'spec_helper'
-require 'sinatra'
-require 'mustache'
-require 'sinatra/auth/github'
-require 'sinatra/auth/github/test/test_helper'
-require 'gollum/app'
-require 'stoor/github_auth'
-require 'stoor/views/layout'
-require 'stoor/views/logout'
-require 'repo'
 
 module Stoor
 

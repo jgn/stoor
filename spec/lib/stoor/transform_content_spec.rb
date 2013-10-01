@@ -1,4 +1,3 @@
-require 'stoor/transform_content'
 require 'spec_helper'
 
 module Stoor
