@@ -39,9 +39,6 @@ the values for the GitHub commit will be what you see in `git config -l`).
 
 The `stoor` command is a thin wrapper around the `thin` web server, and takes all `thin` options (`-p <port>`, etc.).
 
-If you get the error `Gollum::InvalidGitRepositoryError` it means that you didn't change your directory to
-a git repo.
-
 If you don't have a repo yet for your wiki . . .
 
     mkdir mywiki
