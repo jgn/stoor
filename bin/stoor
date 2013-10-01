@@ -4,7 +4,7 @@ require 'thin'
 
 config_ru = File.expand_path(File.join(File.dirname(__FILE__), '..', 'config.ru'))
 
-ENV['WIKI_PATH'] ||= '.'
+ENV['STOOR_WIKI_PATH'] ||= '.'
 
 ARGV.unshift config_ru
 ARGV.unshift '-R'
