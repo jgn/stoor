@@ -53,6 +53,15 @@ use Rack::Session::Cookie, :domain => domain, :key => 'rack.session', :secret =>
 use Rack::CommonLogger, access_logger
 use Stoor::Logger, log_stream, Logger::INFO
 if repo_exists
+  Stoor::GithubAuth.set :github_options, {
+    scopes:    'user:email',
+    client_id: ENV['STOOR_GITHUB_CLIENT_ID'],
+    secret:    ENV['STOOR_GITHUB_CLIENT_SECRET']
+  }
+  Stoor::GithubAuth.set :stoor_options, {
+    github_team_id:      ENV['STOOR_GITHUB_TEAM_ID'],
+    github_email_domain: ENV['STOOR_GITHUB_EMAIL_DOMAIN']
+  }
   use Stoor::GithubAuth
   use Stoor::GitConfig, gollum_path
   use Stoor::TransformContent,
