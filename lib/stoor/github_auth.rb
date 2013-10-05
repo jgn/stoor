@@ -1,14 +1,14 @@
 module Stoor
   class GithubAuth < Sinatra::Base
 
-    set :github_options, {
-      :scopes    => "user:email",
-      :client_id => ENV['STOOR_GITHUB_CLIENT_ID'],
-      :secret    => ENV['STOOR_GITHUB_CLIENT_SECRET']
-    }
-
     register Sinatra::Auth::Github
     register Mustache::Sinatra
+
+#    def initialize(*)
+#      @github_options = {}
+#      @stoor_options = {}
+#      super
+#    end
 
     get '/logout' do
       logout!
@@ -18,25 +18,35 @@ module Stoor
     get '/*' do
       session['stoor.github.authorized'] = nil
 
-      pass unless ENV['STOOR_GITHUB_CLIENT_ID'] && ENV['STOOR_GITHUB_CLIENT_SECRET']
+      pass unless github_options[:client_id] && github_options[:secret]
 
       pass if request.path_info =~ /\./
 
       authenticate!
-      if ENV['STOOR_GITHUB_TEAM_ID']
-        github_team_authenticate!(ENV['STOOR_GITHUB_TEAM_ID'])
+      if stoor_options[:github_team_id]
+        github_team_authenticate!(stoor_options[:github_team_id])
       end
 
       session['stoor.github.authorized'] = 'yes'
 
       email = nil
       emails = github_user.api.emails
-      if ENV['STOOR_GITHUB_EMAIL_DOMAIN']
-        email = emails.find { |e| e =~ /#{ENV['STOOR_GITHUB_EMAIL_DOMAIN']}/ }
+      if stoor_options[:github_email_domain]
+        email = emails.find { |e| e =~ /#{stoor_options[:github_email_domain]}/ }
       end
       email ||= emails.first
       session['gollum.author'] = { :name => github_user.name, :email => email }
       pass
+    end
+
+    private
+
+    def github_options
+      @github_options ||= settings.github_options || {}
+    end
+
+    def stoor_options
+      @stoor_options ||= settings.stoor_options || {}
     end
   end
 end
