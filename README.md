@@ -145,3 +145,39 @@ and finally:
 
 Now browse your wiki at <http://wiki.local>
 
+## Links in the Wiki
+
+A bit of advice: Use the MediaWiki format for links internal to your wiki. This style is recommended by GitHub (see <https://help.github.com/articles/how-do-i-add-links-to-my-wiki>).
+
+For example, if you have a secondary page called `foo.md`, and want a link that displays "This is my foo page", write
+your page link like this
+
+```
+[[This is my foo page|foo]]
+```
+
+Notice that the Gollum docs say "The page file may exist anywhere in the directory structure of the repository. Gollum does a breadth first search and uses the first match that it finds" -- So
+keep your page names unique.
+
+If you want to use relative links of the form `[Display text](wiki/other)`, don't. The wikis on GitHub do some wrangling with the base path
+that are not compatible with local wikis managed by Gollum. If you peruse the Gollum documentation at <https://github.com/gollum/gollum/wiki#page-links>, you
+will see that they don't describe the Markdown format at all.
+
+(Within a Rack Builder, even if you set the Gollum `base_path` and wrap Gollum in a `map` with the same `base_path` you will find that
+the displayed paths prefix URLs with an extra `base_path`.)
+
+## Things left out
+
+* No support for changing the "base path."
+* No support for changling Gollum options - all the default options are taken
+
+## Testing
+
+To run the specs, create an application per "GitHub Authorization" above, and take note of the client id and client secret.
+
+Then set up Stoor so that you are running with GitHub authorization. Authorize.
+
+Now run the specs like so:
+
+    STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 bundle exec rspec
+
