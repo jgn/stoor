@@ -4,15 +4,13 @@ module Stoor
     register Sinatra::Auth::Github
     register Mustache::Sinatra
 
-#    def initialize(*)
-#      @github_options = {}
-#      @stoor_options = {}
-#      super
-#    end
-
     get '/logout' do
       logout!
       mustache :logout
+    end
+
+    get '/sorry' do
+      mustache :sorry
     end
 
     get '/*' do

@@ -87,6 +87,19 @@ if repo_exists
       regexp: /<body>/,
       after: '<style type="text/css">#wiki-wrapper { width: 90%; } .markdown-body table { width: 100%; }</style>'
   end
+  if ENV['STOOR_READONLY']
+    use Stoor::ReadOnly, '/sorry'
+    use Stoor::TransformContent,
+      regexp: /<body>/,
+      after: <<-STYLE
+        <style type="text/css">
+          #minibutton-new-page    { display: none; }
+          #minibutton-rename-page { display: none; }
+          a.action-edit-page      { display: none; }
+          #delete-link            { display: none; }
+        </style>
+      STYLE
+  end
 
   Precious::App.set(:gollum_path, gollum_path)
   Precious::App.set(:default_markup, :markdown)
