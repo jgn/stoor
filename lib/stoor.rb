@@ -1,9 +1,11 @@
 require 'stoor/logger'
 require 'stoor/github_auth'
 require 'stoor/git_config'
+require 'stoor/read_only'
 require 'stoor/transform_content'
 require 'stoor/views/layout'
 require 'stoor/views/logout'
+require 'stoor/views/sorry'
 
 # In at least gollum 2.4.13 and later:
 #   https://github.com/gollum/gollum/blob/master/lib/gollum/uri_encode_component.rb#L36

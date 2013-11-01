@@ -106,6 +106,11 @@ If the user is not a member of the specified team, they aren't allowed access.
 
     STOOR_WIDE=y              # Main wiki content will take 90% of browser width; widens tables as well
 
+### Read-only
+
+    STOOR_READONLY=y          # Create, New, Delete buttons and links hidden;
+                              # /create/*, /delete/*, POST, and PUT requests redirected to "sorry" page
+
 ## How I run it
 
 I like having my own personal wiki. Since Apache is ubiquitous on Macs, I run the Wiki with configuration in `/etc/apache2/httpd.conf`,
@@ -169,7 +174,7 @@ the displayed paths prefix URLs with an extra `base_path`.)
 ## Things left out
 
 * No support for changing the "base path."
-* No support for changling Gollum options - all the default options are taken
+* No support for changing Gollum options - all the default options are taken
 
 ## Testing
 
