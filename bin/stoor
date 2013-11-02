@@ -2,9 +2,12 @@
 
 require 'thin'
 
-config_ru = File.expand_path(File.join(File.dirname(__FILE__), '..', 'config.ru'))
+dirname = File.dirname(__FILE__)
+env_key = dirname.split(File::SEPARATOR).last.upcase
 
-ENV['STOOR_WIKI_PATH'] ||= '.'
+config_ru = File.expand_path(File.join(dirname, '..', 'config.ru'))
+
+ENV["#{@env_key}_WIKI_PATH"] ||= '.'
 
 ARGV.unshift config_ru
 ARGV.unshift '-R'

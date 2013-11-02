@@ -46,6 +46,13 @@ If you don't have a repo yet for your wiki . . .
     git init .
     stoor
 
+### Configuration via environment variables
+
+Stoor is configured via environment variables of the form `<name>_<some token>`. `<name>` is taken from the name
+of the directory in which the application resides. If you clone the app or use it as a Gem, it will be: `STOOR`
+If you clone into a directory with a different name (e.g., `stoor2`) it will be: `STOOR2`. This facilitates running
+two instances of Stoor in the same process (see below regarding Apache).
+
 ### Specify the Wiki repo location
 
     STOOR_WIKI_PATH=/Users/admin/wiki stoor
@@ -150,6 +157,46 @@ and finally:
 
 Now browse your wiki at <http://wiki.local>
 
+### Running two instances of Stoor in the same Apache
+
+You may want to run two instances of Stoor in the same Apache. For instance, they might both use the same Wiki path,
+but one is set to be read-only, while the other allows edits.
+
+To do this, don't set the DocumentRoot to the Gem directory. Intead, clone the repo twice, once into a directory
+such as `stoor1` the other into `stoor2`. Then configure
+the two VirtualHosts with environment variables based on each directory. Something like this:
+
+    <VirtualHost *:80>
+      SetEnv STOOR1_GITHUB_CLIENT_ID 780ec06a331b4f61a345
+      SetEnv STOOR1_GITHUB_CLIENT_SECRET f1e5439aff166c34f707747120acbf66ef233fc2
+      SetEnv STOOR1_GITHUB_EMAIL_DOMAIN 7fff.com
+      SetEnv STOOR1_DOMAIN wiki.local
+      SetEnv STOOR1_EXPIRE_AFTER 60
+      SetEnv STOOR1_WIKI_PATH /Users/jgn/Dropbox/wiki
+      ServerName wiki.local
+      DocumentRoot "/Users/jgn/src/stoor1"
+      <Directory "/Users/jgn/src/stoor1">
+        Allow from all
+        Options -MultiViews
+      </Directory>
+    </VirtualHost>
+
+    <VirtualHost *:80>
+      SetEnv STOOR2_GITHUB_CLIENT_ID 780ec06a331b4f61a345
+      SetEnv STOOR2_GITHUB_CLIENT_SECRET f1e5439aff166c34f707747120acbf66ef233fc2
+      SetEnv STOOR2_GITHUB_EMAIL_DOMAIN 7fff.com
+      SetEnv STOOR2_DOMAIN wiki.local
+      SetEnv STOOR2_EXPIRE_AFTER 60
+      SetEnv STOOR2_WIKI_PATH /Users/jgn/Dropbox/wiki
+      SetEnv STOOR2_READONLY y
+      ServerName wiki-readonly.local
+      DocumentRoot "/Users/jgn/src/stoor2"
+      <Directory "/Users/jgn/src/stoor2">
+        Allow from all
+        Options -MultiViews
+      </Directory>
+    </VirtualHost>
+
 ## Links in the Wiki
 
 A bit of advice: Use the MediaWiki format for links internal to your wiki. This style is recommended by GitHub (see <https://help.github.com/articles/how-do-i-add-links-to-my-wiki>).
@@ -177,6 +224,8 @@ the displayed paths prefix URLs with an extra `base_path`.)
 * No support for changing Gollum options - all the default options are taken
 
 ## Testing
+
+Ensure that you clone to a directory called `stoor`, because the ENV variables adopt the name of the home directory.
 
 To run the specs, create an application per "GitHub Authorization" above, and take note of the client id and client secret.
 
