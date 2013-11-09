@@ -58,6 +58,7 @@ module Stoor
 
     def repo_missing?(path)
       Gollum::Wiki.new(path)
+      return nil
     rescue Gollum::InvalidGitRepositoryError, Gollum::NoSuchPathError
       return "Sorry, #{path} is not a git repository; you might try `cd #{path}; git init .`."
     rescue NameError
