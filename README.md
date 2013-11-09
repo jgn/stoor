@@ -9,12 +9,10 @@ so that we can constrain access by GitHub Organization Team membership.
 
 ## Requirements
 
-Ruby 1.9.2 or greater.
-
-An operating system other than Windows (because Gollum doesn't work on Windows, because grit doesn't work on Windows . . .).
-
-Unfortunately, Stoor will no longer work on Ruby 1.8.7, because `gollum-lib` now wants Nokogiri 1.6.0 ([see?](https://github.com/gollum/gollum-lib/commit/eeb0a4a036001c7621d173e7152b91ed02b21ed0#commitcomment-4170065)), and
-1.8.7 isn't supported. That's too bad, because it was nice that this would work on the system Ruby on a Mac.
+* Ruby 1.9.2 or greater. Unfortunately, Stoor will no longer work on Ruby 1.8.7, because `gollum-lib` now wants Nokogiri 1.6.0 ([see?](https://github.com/gollum/gollum-lib/commit/eeb0a4a036001c7621d173e7152b91ed02b21ed0#commitcomment-4170065)), and
+1.8.7 isn't supported. That's too bad, because it was nice that this would work on the older system Ruby on a Mac.
+* Persistent access to the filesystem (i.e., won't work on Heroku).
+* An operating system other than Windows (because Gollum doesn't work on Windows, because [grit doesn't work on Windows . . .](https://github.com/gollum/gollum#system-requirements)).
 
 ## Setup
 
