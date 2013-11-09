@@ -1,4 +1,5 @@
 require 'stoor/logger'
+require 'stoor/config'
 require 'stoor/github_auth'
 require 'stoor/git_config'
 require 'stoor/read_only'
