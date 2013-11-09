@@ -2,8 +2,8 @@ require 'logger'
 
 module Stoor
   class Config
-    def initialize(file)
-      @file = file
+    def initialize(file, running_via_cmd)
+      @file, @running_via_cmd = file, running_via_cmd
     end
 
     def dirname
@@ -15,7 +15,9 @@ module Stoor
     end
 
     def env_prefix
-      @env_prefix ||= dirname.split(File::SEPARATOR).last.upcase
+      @env_prefix ||= begin
+        @running_via_cmd ? 'STOOR' : dirname.split(File::SEPARATOR).last.upcase
+      end
     end
 
     def env(token)
