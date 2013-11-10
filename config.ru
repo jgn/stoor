@@ -10,17 +10,16 @@ require 'rack/null_logger'
 
 ENV['RACK_ENV'] ||= 'development'
 
-config = Stoor::Config.new(__FILE__)
+config = Stoor::Config.new(__FILE__, ENV['STOOR_RUNNING_VIA_CMD'])
 
 domain       = config.env('DOMAIN') || 'localhost'
 secret       = config.env('SECRET') || 'stoor'
 expire_after = (config.env('EXPIRE_AFTER') || '3600').to_i
 
-
-gollum_path = config.env('WIKI_PATH') || File.expand_path(File.dirname(__FILE__))
+gollum_path = config.env('WIKI_PATH') || config.dirname
 
 config.dump_env
-config.log "gollum_path = #{gollum_path}"
+config.log "gollum_path: #{gollum_path}"
 
 if message = config.repo_missing?(gollum_path)
   puts message
