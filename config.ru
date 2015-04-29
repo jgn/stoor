@@ -37,8 +37,9 @@ else
     secret:    config.env('GITHUB_CLIENT_SECRET')
   }
   Stoor::GithubAuth.set :stoor_options, {
-    github_team_id:      config.env('GITHUB_TEAM_ID'),
-    github_email_domain: config.env('GITHUB_EMAIL_DOMAIN')
+    github_team_id:               config.env('GITHUB_TEAM_ID'),
+    github_email_domain:          config.env('GITHUB_EMAIL_DOMAIN'),
+    github_email_domain_required: config.env('GITHUB_EMAIL_DOMAIN_REQUIRED')
   }
   use Stoor::GithubAuth
 
