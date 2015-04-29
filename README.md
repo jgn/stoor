@@ -53,7 +53,7 @@ two instances of Stoor in the same process (see below regarding Apache).
 
 ### Specify the Wiki repo location
 
-    STOOR_WIKI_PATH=/Users/admin/wiki stoor
+    STOOR_WIKI_PATH=/Users/admin/wiki
 
 The `STOOR_WIKI_PATH` environment variable provides for locating the wiki contents in a differet repo from the
 Stoor application. It is strongly advised that you do this so that you can keep your wiki code and wiki
@@ -63,7 +63,8 @@ content separate.
 
 Require authorization via GitHub to the GitHub application with the given client id and secret
 
-    STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
+    STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345
+    STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2
 
 Access to the wiki will first run through GitHub OAuth against the app specified by the id and secret. For information
 on setting up an application in GitHub and obtaining its id and secret, see <https://github.com/settings/applications/new>.
@@ -87,13 +88,23 @@ application settings.
 
 If there is more than one email associated with the GitHub user, prefer the one from the specified domain (otherwise the first email will be used)
 
-    STOOR_GITHUB_EMAIL_DOMAIN=7fff.com STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
+    STOOR_GITHUB_EMAIL_DOMAIN=7fff.com
 
 ### Require GitHub team
 
-    STOOR_GITHUB_TEAM_ID=11155 STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 stoor
+    STOOR_GITHUB_TEAM_ID=11155
 
 If the user is not a member of the specified team, they aren't allowed access.
+
+To determine a team id, do the following:
+
+1. Install curl
+2. Go to Github / Settings / Personal access tokens (<https://github.com/settings/tokens>)
+3. Generate a new token by clicking "Generate new token"
+4. Provide a name and check at least "read:org"; click "Generate token"
+5. Make a note of it
+6. From the console, `curl -H "Authorization: token YOURTOKEN" https://api.github.com/orgs/IoraHealth/teams`
+7. Find the id in the list
 
 ### Specify the domain (this is to ensure that cookies are set for the correct domain)
 
@@ -232,4 +243,3 @@ Then set up Stoor so that you are running with GitHub authorization. Authorize.
 Now run the specs like so:
 
     STOOR_GITHUB_CLIENT_ID=780ec06a331b4f61a345 STOOR_GITHUB_CLIENT_SECRET=f1e5439aff166c34f707747120acbf66ef233fc2 bundle exec rspec
-
