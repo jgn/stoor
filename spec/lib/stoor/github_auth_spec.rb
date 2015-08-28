@@ -55,6 +55,23 @@ module Stoor
       expect(last_request.env['rack.session']['gollum.author']).to eq(name: 'Effie Klinker', email: 'effie@7fff.com')
     end
 
+    it 'has an unauthorized page' do
+      get '/unauthorized'
+      expect(last_response.body).to match("Unauthorized domain")
+    end
+
+    it 'Shows an unauthorized page if the email domain is required' do
+      Stoor::GithubAuth.set :stoor_options, {
+        github_team_id: nil,
+        github_email_domain: 'banana.com',
+        github_email_domain_required: 'y',
+      }
+      get '/'
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_response.body).to match("Unauthorized domain")
+    end
+
     it 'logs the user out' do
       get '/'
       get '/logout'

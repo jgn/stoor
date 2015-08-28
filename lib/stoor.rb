@@ -7,6 +7,7 @@ require 'stoor/transform_content'
 require 'stoor/views/layout'
 require 'stoor/views/logout'
 require 'stoor/views/sorry'
+require 'stoor/views/unauthorized'
 
 # In at least gollum 2.4.13 and later:
 #   https://github.com/gollum/gollum/blob/master/lib/gollum/uri_encode_component.rb#L36

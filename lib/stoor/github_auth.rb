@@ -13,6 +13,10 @@ module Stoor
       mustache :sorry
     end
 
+    get '/unauthorized' do
+      mustache :unauthorized
+    end
+
     get '/*' do
       session['stoor.github.authorized'] = nil
 
@@ -28,9 +32,12 @@ module Stoor
       session['stoor.github.authorized'] = 'yes'
 
       email = nil
-      emails = github_user.api.emails
+      emails = github_user.api.emails.map { |e| e['email'] }
       if stoor_options[:github_email_domain]
         email = emails.find { |e| e =~ /#{stoor_options[:github_email_domain]}/ }
+        if stoor_options[:github_email_domain_required] && email.nil?
+          redirect to('/unauthorized')
+        end
       end
       email ||= emails.first
       session['gollum.author'] = { :name => github_user.name, :email => email }
