@@ -32,7 +32,10 @@ module Stoor
       session['stoor.github.authorized'] = 'yes'
 
       email = nil
-      emails = github_user.api.emails.map { |e| e['email'] }
+      # It seems that at some point in the past, either the REST
+      # interface or Oktokit would return the email in an attribute.
+      # But now the list of emails is returned. So try both.
+      emails = github_user.api.emails.map { |e| e['email'] || e }
       if stoor_options[:github_email_domain]
         email = emails.find { |e| e =~ /#{stoor_options[:github_email_domain]}/ }
         if stoor_options[:github_email_domain_required] && email.nil?
