@@ -1,3 +1,7 @@
+| Status |
+|---|
+| Obsolete! Gollum now does most everything here. |
+
 Stoor provides a Gollum (wiki) server with a few other bells and whistles, such as authentication against GitHub OAuth.
 
 ## Rationale
